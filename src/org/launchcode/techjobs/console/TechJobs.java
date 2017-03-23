@@ -52,19 +52,15 @@ public class TechJobs {
 
             } else { // if the choice is search
 
-                // How does the user want to search (e.g. by skill or employer)
+                // How does the user want to search?
                 String searchField = getUserSelection("Search by:", columnChoices);
 
-                // What is their search term?
+                // What is the search term?
                 System.out.println("\nSearch term: ");
                 String searchTerm = in.nextLine();
 
 
                 if (searchField.equals("all")) {
-                    System.out.println("Search all fields not yet implemented.");
-                    ArrayList<HashMap<String, String>> field = JobData.findAll();
-                    System.out.println(field);
-                    System.out.println(searchField);
                     printJobs(JobData.findByValue(searchTerm));
                 } else {
                     printJobs(JobData.findByColumnAndValue(searchField, searchTerm));
@@ -73,15 +69,14 @@ public class TechJobs {
         }
     }
 
-    // ﻿Returns the key of the selected item from the choices Dictionary
+    // ﻿Return the key of the selected item from the choices-Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         Integer choiceIdx;
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
 
-        // Put the choices in an ordered structure so we can
-        // associate an integer with each one
+        // Put the choices in an ordered structure
         Integer i = 0;
         for (String choiceKey : choices.keySet()) {
             choiceKeys[i] = choiceKey;
@@ -117,11 +112,8 @@ public class TechJobs {
 
 
         if (someJobs.size() >= 1) {
-
             for (int i = 0; i < someJobs.size(); i++) {
-
                 System.out.println("*****");
-
                 for (Map.Entry<String, String> job : someJobs.get(i).entrySet()) {
                     System.out.println(job.getKey() + ":" + " (" + job.getValue() + ")");
                 }
